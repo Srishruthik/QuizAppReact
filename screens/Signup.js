@@ -27,6 +27,9 @@ class Signup extends Component {
     };
   }
 
+  componentDidMount() {
+   
+  }
   createAccount = () => {
     this.setState({ loading: true });
 
@@ -92,6 +95,7 @@ class Signup extends Component {
     });
   };
   render() {
+    
     if (this.state.loading) {
       return (
         <View style={{ flex: 1, backgroundColor: "#ffbf66" }}>

@@ -35,7 +35,8 @@ class Home extends Component {
          
     }
     componentDidMount() {
-       
+        
+        console.log("Hello")
         let user_details = firebase.auth().currentUser;
         this.setState({
             user_details:user_details
@@ -74,7 +75,7 @@ class Home extends Component {
           
     }
     render() {
-       console.log(this.state.user_details.uid)
+
         return (
             <View style={styles.container}>
 

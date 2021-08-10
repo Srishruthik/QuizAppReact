@@ -1,0 +1,65 @@
+{
+  "response_code": 0,
+  "results": [
+    {
+      "category": "History",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "What event marked the start of World War II?",
+      "correct_answer": "Invasion of Poland (1939)",
+      "incorrect_answers": [
+        "Invasion of Russia (1942)",
+        "Battle of Britain (1940)",
+        "Invasion of Normandy (1944)"
+      ]
+    },
+    {
+      "category": "Geography",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "What is the official language of Bhutan?",
+      "correct_answer": "Dzongkha",
+      "incorrect_answers": ["Ladakhi", "Karen", "Groma"]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "Which franchise had a special event hosted in the popular MMORPG Final Fantasy XIV: A Realm Reborn?",
+      "correct_answer": "Yo-kai Watch",
+      "incorrect_answers": ["Pok&eacute;mon", "Yu-gi-oh", "Buddyfight"]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "Which of the following is not a real Pok&eacute;mon?",
+      "correct_answer": "Luminid",
+      "incorrect_answers": ["Dragalge", "Mandibuzz", "Araquanid"]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "Which one of these was not a member of the Fiendish Five in the game Sly Cooper and the Thievius Raccoonus?",
+      "correct_answer": "Dimitri Lousteau",
+      "incorrect_answers": ["Mz. Ruby", "Muggshot", "Clockwerk"]
+    },
+    {
+      "category": "Entertainment: Comics",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "Which &quot;Green Arrow&quot; sidekick commonly wears a baseball cap?",
+      "correct_answer": "Roy Harper",
+      "incorrect_answers": ["Black Canary", "Emiko Queen", "Dick Grayson"]
+    },
+    {
+      "category": "Vehicles",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "Which of these cars is NOT considered one of the 5 Modern Supercars by Ferrari?",
+      "correct_answer": "Testarossa",
+      "incorrect_answers": ["Enzo Ferrari", "F40", "288 GTO"]
+    }
+  ]
+}
