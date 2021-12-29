@@ -5,6 +5,7 @@ import "firebase/firestore";
 import { firestore } from "firebase";
 const deviceHeight = Dimensions.get("window").height;
 const deviceWidth = Dimensions.get("window").width;
+
 /* 
 Current data:  Object {
   "Accuracy": 0,
@@ -56,11 +57,14 @@ class Home extends Component {
     })
       
 
+   
     }
 
     beginQuiz =() =>{
         this.props.navigation.navigate("Quiz")
     }
+
+    
 
     signout = () => {
        
@@ -75,7 +79,7 @@ class Home extends Component {
           
     }
     render() {
-
+       
         return (
             <View style={styles.container}>
 

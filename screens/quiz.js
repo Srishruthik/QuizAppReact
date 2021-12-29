@@ -12,6 +12,13 @@ const deviceWidth = Dimensions.get("window").width;
 import * as firebase from "firebase";
 import "firebase/firestore";
 import { firestore } from "firebase";
+/*
+question Hard = 150 pts
+question Meduim = 100 pts
+question Easy = 50pts
+
+
+*/
 class Quiz extends Component {
   constructor(props) {
     super(props);
@@ -31,15 +38,31 @@ class Quiz extends Component {
       arrayAnswerChoice: "",
       questionNumber: 0,
       bgColor: "rgb(79,150,999)",
-      correct:0,
-      incorrect:0
+      correct: 0,
+      incorrect: 0,
+      userData: [], // firebase user data
+      user_points: [], // firebase user's game data,
+      gameScore: 0,
+      difficulty: ""
+      // timer:2,
     };
+    const userInfo = firebase.auth().currentUser;
+    firestore()
+      .collection("Users")
+      .doc(userInfo.uid)
+      .onSnapshot((doc) => {
+        this.setState({
+          user_points: doc.data(),
+        });
+      });
   }
 
   componentDidMount() {
-    fetch(
-      "https://opentdb.com/api.php?amount=7&difficulty=medium&type=multiple"
-    )
+    let uniqueID_ = firebase.auth().currentUser;
+    this.setState({
+      userData: uniqueID_,
+    });
+    fetch("https://opentdb.com/api.php?amount=7&type=multiple")
       .then((res) => res.json())
       .then((res) => res.results)
       .then((res) => {
@@ -53,6 +76,7 @@ class Quiz extends Component {
         this.getQuizData();
       });
   }
+
   shuffleAnswers = (array) => {
     var currentIndex = array.length,
       randomIndex;
@@ -73,20 +97,53 @@ class Quiz extends Component {
     return array;
   };
 
-  getQuizData = () => {
-    if (this.state.questionNumber == 7) {
-      setTimeout(() => {
-        this.props.navigation.navigate("Home",{
-          isDone:true,
-          correct:this.state.correct,
-          incorrect:this.state.incorrect
-        });
-      },1000)
-
-    }
+  afterQuiz = () => {
+    const { isDone, correct, incorrect, userData } = this.state;
+    const { Correct, Incorrect, Points } = this.state.user_points;
+    // console.log(this.state.user_points.Correct+correct)
+    const q = Correct + Incorrect + 7;
+    consol.log(Points)
   
+    firestore()
+      .collection("Users")
+      .doc(userData.uid)
+      .update({
+        Correct: Correct + correct,
+        Incorrect: Incorrect + incorrect,
+        Attempted: q,
+        Accuracy: (((Correct + correct) / q) * 100).toFixed(2),
+        Points: Points+Math.round(this.state.gameScore)
+
+      });
+  };
+
+  getQuizData = () => {
+    /*  setInterval(() => {
+      this.setState({
+        timer:this.state.timer-1
+      })
+      if(this.state.timer == 0){
+        this.submitAnswer("Ser","g")
+      }
+    },1000)
+     */
+
+    if (this.state.questionNumber == 7) {
+      /*    setTimeout(() => { */
+      this.props.navigation.navigate("Home", {
+        isDone: true,
+        correct: this.state.correct,
+        incorrect: this.state.incorrect,
+      });
+      this.afterQuiz();
+
+      /* }) */
+    }
+
     try {
-      console.log(this.state.questionData[this.state.questionNumber].correct_answer);
+      console.log(
+        this.state.questionData[this.state.questionNumber].correct_answer
+      );
       this.setState({
         choice1: false,
         choice2: false,
@@ -101,6 +158,7 @@ class Quiz extends Component {
         correct_answer: "",
         arrayAnswerChoice: "",
         bgColor: "rgb(79,150,999)",
+        
       });
 
       let questionDetails = this.state.questionData[this.state.questionNumber];
@@ -116,20 +174,24 @@ class Quiz extends Component {
         answerChoice4: answer_choices[3],
         correct_answer: decode(questionDetails.correct_answer),
         arrayAnswerChoice: answer_choices,
+        difficulty:questionDetails.difficulty
       });
     } catch {}
   };
   submitAnswer = (answerChoice = "", val = "") => {
     //  console.log(val)
     // console.log(this.state.correct_answer)
-
+    let {difficulty} = this.state;
     if (val == this.state.correct_answer) {
+      //if the user selections a correct answer choice :)
+      
       if (answerChoice == "A") {
         this.setState({
           choice1: false,
           choice2: true,
           choice3: true,
           choice4: true,
+          bgColor: "#44bd42",
         });
       } else if (answerChoice == "B") {
         this.setState({
@@ -137,6 +199,7 @@ class Quiz extends Component {
           choice2: false,
           choice3: true,
           choice4: true,
+          bgColor: "#44bd42",
         });
       } else if (answerChoice == "C") {
         this.setState({
@@ -144,6 +207,7 @@ class Quiz extends Component {
           choice2: true,
           choice3: false,
           choice4: true,
+          bgColor: "#44bd42",
         });
       } else if (answerChoice == "D") {
         this.setState({
@@ -151,11 +215,23 @@ class Quiz extends Component {
           choice2: true,
           choice3: true,
           choice4: false,
+          bgColor: "#44bd42",
         });
       }
+      let score = 0;
+      
+      if(difficulty == "easy"){
+        score = Math.random() * (50 - 40) + 40;
+      }else if(difficulty == "medium"){
+        score = Math.random()*(100-75)+75
+      }else if(difficulty == "hard"){
+        score = Math.random()*(150-110)+110
+      }
       this.setState({
-        correct:this.state.correct+1
-      })
+        correct: this.state.correct + 1,
+        gameScore: this.state.gameScore+score
+        
+      });
     } else {
       //incorrect
       let index = 0;
@@ -182,6 +258,7 @@ class Quiz extends Component {
           choice4: true,
           bgColor: "#eb4034",
         });
+
       } else if (index == 2) {
         this.setState({
           choice1: true,
@@ -199,20 +276,32 @@ class Quiz extends Component {
           bgColor: "#eb4034",
         });
       }
+      let score = 0;
+      if(difficulty == "easy"){
+        score = Math.random() * (30 - 10) + 10;
+      }else if(difficulty == "medium"){
+        score = Math.random()*(50-25)+25
+      }else if(difficulty == "hard"){
+        score = Math.random()*(20-10)+10
+      }
+
       this.setState({
-        incorrect:this.state.incorrect+1
-      })
+        incorrect: this.state.incorrect + 1,
+        gameScore: this.state.gameScore-score,
+      });
     }
     this.setState({
       answeredQuestion: true,
+
+      //  timer:3
     });
-   
+
     setTimeout(() => {
       this.setState({
         questionNumber: this.state.questionNumber + 1,
       });
       this.getQuizData();
-    }, );
+    }, 3000);
   };
 
   render() {
@@ -221,9 +310,14 @@ class Quiz extends Component {
         <View
           style={[
             styles.headerContainer,
-            { backgroundColor: this.state.bgColor },
+            { backgroundColor: this.state.bgColor, justifyContent: "center" },
           ]}
-        ></View>
+        >
+          <Text style={[styles.timer, { marginBottom: "90%" }]}>
+            Timer Remaining
+          </Text>
+          <Text style={styles.timer}>{/*this.state.timer*/}</Text>
+        </View>
         <View style={styles.questionContainer}>
           <View style={{ flex: 1.5, justifyContent: "center" }}>
             <Text style={styles.questionNumberTitle}>
@@ -406,6 +500,14 @@ const styles = StyleSheet.create({
     fontSize: deviceHeight / 40,
     fontFamily: "Gill Sans",
     color: "#5c5b5a",
+  },
+  timer: {
+    fontSize: deviceHeight / 30,
+    position: "absolute",
+    zIndex: 1,
+    alignSelf: "center",
+    marginBottom: "25%",
+    color: "white",
   },
 });
 export default Quiz;

@@ -2,64 +2,68 @@
   "response_code": 0,
   "results": [
     {
+      "category": "Entertainment: Board Games",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "The board game, Nightmare was released in what year?",
+      "correct_answer": "1991",
+      "incorrect_answers": ["1992", "1989", "1995"]
+    },
+    {
       "category": "History",
       "type": "multiple",
       "difficulty": "medium",
-      "question": "What event marked the start of World War II?",
-      "correct_answer": "Invasion of Poland (1939)",
+      "question": "How many times was Albert Einstein married in his lifetime?",
+      "correct_answer": "Twice",
+      "incorrect_answers": ["Five", "Thrice", "Once"]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "Who was the main antagonist of Max Payne 3 (2012)?",
+      "correct_answer": "Victor Branco",
       "incorrect_answers": [
-        "Invasion of Russia (1942)",
-        "Battle of Britain (1940)",
-        "Invasion of Normandy (1944)"
+        "&Aacute;lvaro Neves",
+        "Armando Becker",
+        "Milo Rego"
       ]
     },
     {
-      "category": "Geography",
-      "type": "multiple",
-      "difficulty": "medium",
-      "question": "What is the official language of Bhutan?",
-      "correct_answer": "Dzongkha",
-      "incorrect_answers": ["Ladakhi", "Karen", "Groma"]
-    },
-    {
       "category": "Entertainment: Video Games",
       "type": "multiple",
-      "difficulty": "medium",
-      "question": "Which franchise had a special event hosted in the popular MMORPG Final Fantasy XIV: A Realm Reborn?",
-      "correct_answer": "Yo-kai Watch",
-      "incorrect_answers": ["Pok&eacute;mon", "Yu-gi-oh", "Buddyfight"]
+      "difficulty": "hard",
+      "question": "The &#039;D&#039; in the term &quot;D-Mail&quot; from the game &quot;Steins; Gate&quot; is short for what?",
+      "correct_answer": "DeLorean",
+      "incorrect_answers": ["Deep", "Demo", "Dev"]
     },
     {
-      "category": "Entertainment: Video Games",
+      "category": "Entertainment: Japanese Anime & Manga",
       "type": "multiple",
-      "difficulty": "medium",
-      "question": "Which of the following is not a real Pok&eacute;mon?",
-      "correct_answer": "Luminid",
-      "incorrect_answers": ["Dragalge", "Mandibuzz", "Araquanid"]
+      "difficulty": "hard",
+      "question": "Which animation studio animated &quot;Psycho Pass&quot;?",
+      "correct_answer": "Production I.G",
+      "incorrect_answers": ["Kyoto Animation", "Shaft", "Trigger"]
     },
     {
-      "category": "Entertainment: Video Games",
+      "category": "Science & Nature",
       "type": "multiple",
       "difficulty": "medium",
-      "question": "Which one of these was not a member of the Fiendish Five in the game Sly Cooper and the Thievius Raccoonus?",
-      "correct_answer": "Dimitri Lousteau",
-      "incorrect_answers": ["Mz. Ruby", "Muggshot", "Clockwerk"]
+      "question": "Which of the following men does not have a chemical element named after him?",
+      "correct_answer": "Sir Isaac Newton",
+      "incorrect_answers": ["Albert Einstein", "Niels Bohr", "Enrico Fermi"]
     },
     {
-      "category": "Entertainment: Comics",
+      "category": "History",
       "type": "multiple",
-      "difficulty": "medium",
-      "question": "Which &quot;Green Arrow&quot; sidekick commonly wears a baseball cap?",
-      "correct_answer": "Roy Harper",
-      "incorrect_answers": ["Black Canary", "Emiko Queen", "Dick Grayson"]
-    },
-    {
-      "category": "Vehicles",
-      "type": "multiple",
-      "difficulty": "medium",
-      "question": "Which of these cars is NOT considered one of the 5 Modern Supercars by Ferrari?",
-      "correct_answer": "Testarossa",
-      "incorrect_answers": ["Enzo Ferrari", "F40", "288 GTO"]
+      "difficulty": "hard",
+      "question": "The Bohemian Revolt (1618-1620) started after Protestants in Prague did what to their Catholic Lords Regents?",
+      "correct_answer": "Threw them out of a window",
+      "incorrect_answers": [
+        "Insulted their mothers",
+        "Locked them in stockades",
+        "Hung them."
+      ]
     }
   ]
 }
